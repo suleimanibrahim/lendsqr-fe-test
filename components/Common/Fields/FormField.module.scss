@@ -1,0 +1,110 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.formControlStyle {
+  display: flex;
+  padding: 12px 16px !important;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: 2px solid #545F7D26;
+  color: #545F7D;
+  background-color: transparent;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  width: 100%;
+  line-height: 19.12px;
+  transition: border-color 0.1s;
+}
+.passwordFieldWrapper {
+  position: relative;
+}
+.togglePassword {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  font-size: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #39CDCC;
+}
+.formControlStyle:focus,
+.dropDownControlStyle:focus,
+.dropDownControlStyle:focus-visible,
+.formControlStyle:focus-visible,
+.OTPInput:focus,
+.phoneNumberFieldFocus {
+  border-color: var(--penaid-green-g-200, #39CDCC);
+  outline: none;
+}
+.phoneNumberFieldFocus {
+  border-color: var(--penaid-green-g-200, #39CDCC) !important;
+}
+.formControlStyle::placeholder {
+  color: var(--penaid-grey-g-100, #90908f);
+}
+
+.formControlStyleGradient {
+  border-color: transparent !important;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90.67deg, #39CDCC 3.26%, rgba(83, 194, 115, 0.91) 77.63%)
+      border-box !important;
+  transition: opacity 0.3s;
+}
+
+.formControlStyleGradient:disabled,
+.formControlStyle:disabled,
+.formControlStyle:disabled:hover,
+.formControlStyleGradient:disabled:hover {
+  opacity: 0.4;
+}
+
+.formControlStyleGradient:-webkit-autofill,
+.formControlStyleGradient:-webkit-autofill:hover,
+.formControlStyleGradient:-webkit-autofill:focus {
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90.67deg, #39CDCC 3.26%, rgba(83, 194, 115, 0.91) 77.63%)
+      border-box !important;
+  border-color: var(--penaid-grey-g-30, #efefee) !important;
+}
+
+.formControlStyleGradient:hover,
+.formControlStyleGradient:focus,
+.formControlStyleGradient:focus-within {
+  border-color: transparent;
+  opacity: 0.9;
+}
+
+.formControlStyleError,
+.formControlStyleError:hover,
+.formControlStyleError:focus,
+.formControlStyleError:focus-within,
+.inputErr,
+.inputErr:hover,
+.inputErr:focus,
+.inputErr:focus-within {
+  color: var(--penaid-red-r-300, #eb5757);
+  border-color: var(--penaid-red-r-300, #eb5757) !important;
+}
+
+.formControlStyleError::placeholder,
+.inputErr::placeholder {
+  color: var(--penaid-red-r-300, #eb5757);
+  opacity: 0.7;
+}
+
+.labelErrorStyle {
+  color: var(--penaid-red-r-300, #eb5757);
+}
+
+.passwordInputStyle:focus-visible {
+  outline: none;
+  border: none;
+}
+.errorMessage {
+  color: var(--penaid-red-r-300, #eb5757);
+  font-size: 14px;
+}
