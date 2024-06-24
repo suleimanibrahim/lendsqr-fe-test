@@ -1,0 +1,11 @@
+.loaderWrapper {
+  padding-block: 1rem;
+}
+
+.loaderWrapper.main {
+  min-height: 150px;
+}
+
+.loaderColor {
+  color: var(--penaid-green-g-300, #54c174) !important;
+}

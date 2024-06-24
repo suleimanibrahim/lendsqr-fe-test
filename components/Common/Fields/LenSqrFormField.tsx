@@ -14,7 +14,7 @@ type FormLabelProps = {
   style?: ComponentProps<"label">["style"];
   withAsterisk?: boolean;
 };
-type PenaidFormFieldOtherProps = {
+export type PenaidFormFieldOtherProps = {
   labelClassName?: ComponentProps<"label">["className"];
   wrapperClassName?: ComponentProps<"div">["className"];
   label?: string;

@@ -8,11 +8,15 @@ import CustomButton from "../Common/CustomButton";
 import LenSqrFormField from "../Common/Fields/LenSqrFormField";
 import Link from "next/link";
 import styles from "./Login.module.scss";
+import { useRouter } from "next/navigation";
 
 export const Login = ()=>{
+  const router = useRouter();
 
     const handleSubmitter = (values:any) => {
-        console.log(values);
+        if(values.username && values.password){
+          router.push("/dashboard/users")
+        }
     };
     const formik = useFormik({
         initialValues: {

@@ -1,0 +1,33 @@
+.inputGroup {
+    display: flex;
+    align-items: center;
+    width: 400px;
+}
+
+.inputText {
+    flex: 1;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 8px 0px 0px 8px;
+    outline: none;
+}
+
+.button {
+    padding: 0.655rem 1rem;
+    background-color: #39CDCC;
+    border: 1px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}

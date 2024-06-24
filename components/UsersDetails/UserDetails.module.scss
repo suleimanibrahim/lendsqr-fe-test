@@ -1,0 +1,158 @@
+.detailsContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.arrowBack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+  }
+  .borderBottom{
+    position: relative;
+    height: .01rem;
+    background-color: #213F7D;
+    width: 100%;
+    opacity: 10;
+    margin-bottom: 1.5rem;
+  }
+  .textheading{
+    text-transform: uppercase;
+  }
+  .details{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    .content{
+      display: flex;
+      flex-direction: column;
+    }
+    @media (max-width:767px) {
+      display: flex;
+      flex-direction: column;
+
+    }
+ } 
+.subheading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+    width: 100%;
+    .btnStyles{
+      display: flex;  
+      gap: 1rem;
+    }
+    .customBtnOne{
+      background: transparent;
+      border: 1px solid #E4033B;
+      color: #E4033B;
+      height: auto;
+      width: 170px;
+      text-transform: uppercase;
+      @media (max-width:767px) {
+        width: max-content;
+        font-size: 8px;
+        padding: 10px 16px;
+      }
+    }
+    .customBtnTwo{
+      background: transparent;
+      border: 1px solid #39CDCC;
+      color: #39CDCC;
+      height: auto;
+      text-transform: uppercase;
+      width: 170px;
+      @media (max-width:767px) {
+        width: max-content;
+        font-size: 8px;
+        padding: 10px 16px;
+      }
+    }
+    @media (max-width:767px) {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      gap: 1rem;
+    }
+  }
+
+  .detailsCard, .headingCard {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 3px 5px 20px 0px #0000000A;
+    background-color: #FFFFFF;
+    border: 1px solid #213F7D0F;
+    padding: 2rem 1.5rem;
+    position: relative;
+    width: 100%;
+  }
+
+.topItem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  @media (max-width:767px) {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .avatarText{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .middle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;  
+  }
+  .stars{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+  }
+  .lastItem{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+}  
+.cardSection{
+ display: flex;
+ flex-direction: column;
+ gap:2.5rem;
+}
+.bottomItem{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  @media (max-width:767px) {
+    width: 100%;
+    max-width: max-content;
+    overflow: auto;
+    flex: 1 1 auto;
+    position: relative;
+  }
+  .bottomMenu{
+    color: #39CDCC;
+    border-bottom: 2.5px solid #39CDCC;
+  }
+}

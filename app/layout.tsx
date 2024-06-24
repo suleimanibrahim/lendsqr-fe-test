@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import PageLoader from "@/components/Common/Loaders/PageLoader";
+import { PageLoaderProvider } from "@/context/PageLoaderContext/Provider";
 
 export const metadata: Metadata = {
   title: "LendSqr App",
@@ -14,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
+      <PageLoaderProvider> 
         {children}
+        <PageLoader/>
+       </PageLoaderProvider> 
       </body>
     </html>
   );
