@@ -71,7 +71,7 @@ type MembersProps ={
           <td className="px-6 py-4 text-left">
             <div className={`${styles.statusContainer} ${!item?.isActive ? styles.default : styles.manager}`}>
                 <span className={`${styles.statusIndicator} ${!item?.isActive ? styles.default : styles.manager}`}></span>
-                <div>{item?.isActive ? "Active":"In Active"}</div>
+                <div>{item?.isActive ? "Active":"Inactive"}</div>
             </div>
             </td>
           <td className="px-6 py-4 text-left">
