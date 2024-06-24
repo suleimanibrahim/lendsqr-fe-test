@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   ReactNode,
   createContext,
@@ -17,12 +17,11 @@ const PageLoaderContext = createContext({} as PageLoaderContextProps);
 
 export const PageLoaderProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     setShow(false);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   const updateShow = useCallback((show: boolean) => setShow(show), []);
   return (

@@ -1,5 +1,5 @@
 "use client"
-import { ReactNode, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 import { Sidebar } from "./fragments/Sidebar";
 import styles from "./dashboard.module.scss";
 import Image from "next/image";
@@ -82,7 +82,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </div>
             </div>
             <div className={styles.content}>
+             <Suspense fallback={<div>Loading...</div>}>
                 {children}
+             </Suspense>   
             </div>
         </div>
     </div>
