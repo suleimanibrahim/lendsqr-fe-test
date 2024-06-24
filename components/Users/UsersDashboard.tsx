@@ -14,9 +14,7 @@ export const UserDashboard = ()=>{
     const [search, setSearch] = useState(false);
 
     useEffect(() => {
-        const data = mockData;
-        console.log('data',data);
-        
+        const data = mockData;        
         setUsersRecord(data);
         setTotalResults(data?.length);
         setPages(Math.ceil(data.length / 10));

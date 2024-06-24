@@ -4,6 +4,7 @@ import styles from "./UsersDashboard.module.scss";
 import moment from "moment";
 import { Table } from "react-bootstrap";
 import { useRouter } from "next/navigation";
+import { useLenSqrRouter } from "@/hooks/useLendSqrRouter";
 
 
 type MembersProps ={
@@ -12,7 +13,7 @@ type MembersProps ={
 }
   const User: React.FC<MembersProps> = ({ item, AllUsers}) => {
       const [showDropdown, setShowDropdown] = useState(false);  
-      const router = useRouter();
+      const router = useLenSqrRouter();
       const [showDropdownMap, setShowDropdownMap] = useState<{
         [key: string]: boolean;
       }>({});

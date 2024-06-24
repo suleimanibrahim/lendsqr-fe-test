@@ -14,9 +14,7 @@ export const UserDetails:React.FC<UserDetailsProps> = ({ id })=>{
     const [userDetails, setUserDetails] = useState<any>({});
 
     useEffect(()=>{
-     const data:any = localStorage.getItem('userDetails');
-     console.log('userDetails',JSON.parse(data));
-     
+     const data:any = localStorage.getItem('userDetails');     
      setUserDetails(JSON.parse(data));
     },[])
 
@@ -70,13 +68,11 @@ export const UserDetails:React.FC<UserDetailsProps> = ({ id })=>{
         <div  className={styles.cardSection} key={sectionName + index}>
           <span className="font16 weight500">{formatKey(sectionName)}</span>
           <div  className={styles.details}>   
-            {Object.entries(sectionData).map(([key, value])  => (
-              <>
-                <div key={key} className={styles.content}>
-                    <span className={`${styles.textheading} font12`}>{key}</span>
-                    <span className="font16">{value || "" as any}</span>
-                </div>
-              </>  
+            {Object.entries(sectionData).map(([key, value],i)  => (
+              <div key={`${sectionName}-${key}-${i}`} className={styles.content}>
+              <span className={`${styles.textheading} font12`}>{key}</span>
+              <span className="font16">{value || "" as any}</span>
+            </div>
             ))}
            </div> 
           <span className={styles.borderBottom}></span>

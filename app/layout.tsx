@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import PageLoader from "@/components/Common/Loaders/PageLoader";
 import { PageLoaderProvider } from "@/context/PageLoaderContext/Provider";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "LendSqr App",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true}>
       <PageLoaderProvider> 
+       <Suspense fallback={<div>Loading...</div>}>
         {children}
+        </Suspense>
         <PageLoader/>
        </PageLoaderProvider> 
       </body>
