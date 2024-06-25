@@ -7,7 +7,7 @@ import { FieldAttributes, useField } from "formik";
 import { ReactNode, useEffect, useState } from "react";
 import BootstrapForm from "react-bootstrap/Form";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FormFieldErrorMessage, PenaidFormFieldOtherProps } from "../Fields/LenSqrFormField";
+import { FormFieldErrorMessage, LenSqrFormFieldOtherProps } from "../Fields/LenSqrFormField";
 
 type InputFieldProps = FieldAttributes<JSX.IntrinsicElements["input"]> & {
     hasError: boolean;
@@ -19,7 +19,7 @@ type TypeObject = Record<ComponentName, ReactNode>;
 
 type LenSqrFormFieldProps = {
     componentName?: ComponentName;
-  } & FieldAttributes<PenaidFormFieldOtherProps>;
+  } & FieldAttributes<LenSqrFormFieldOtherProps>;
 
 const SearchInput = (props: LenSqrFormFieldProps) => {
     const [hasError, setHasError] = useState(false);
