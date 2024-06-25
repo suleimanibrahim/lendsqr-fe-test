@@ -28,6 +28,69 @@
   gap: 0.75rem;
 }
 
+.headerCell {
+  position: relative;
+}
+
+.headerCellContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterIcon {
+  cursor: pointer;
+}
+.filterBtn{
+  display: flex;
+  flex-direction: columns;
+  gap: 1rem;
+  margin-top: 1rem;
+  .filterButton{
+    background-color: transparent;
+    color: #545F7D;
+    border: 1.5px solid #545F7D
+  }
+}
+
+
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .filterField{
+    padding: 8px 10px !important;
+    border-radius: 8px;
+  }
+}
+.filterContainer {
+  position: absolute;
+  padding: 2rem 1rem;
+  z-index: 50;
+  background-color: #FFFFFF;
+  border: 1px solid #545F7D0A;
+  box-shadow: 3px 5px 20px 0px #0000000A;
+  margin-left: -2rem;
+  top: 100%; 
+  width: 241px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filterContainer .filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterContainer .filterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .threeDot .dropdownMenu .menuItem {
   cursor: pointer;
   display: flex;

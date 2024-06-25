@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./UsersDashboard.module.scss";
 import moment from "moment";
-import { Table } from "react-bootstrap";
+import { Form, Table } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { useLenSqrRouter } from "@/hooks/useLendSqrRouter";
+import LenSqrFormField from "../Common/Fields/LenSqrFormField";
+import CustomButton from "../Common/CustomButton";
+import { FormikProvider, useFormik } from "formik";
+import * as Yup from "yup";
 
 
 type MembersProps ={
@@ -114,7 +120,7 @@ type MembersProps ={
                     <span>Activate User</span>
                 </div>
                 </div>
-              )}
+                )}
             </span>
           </td>
          </tr>
@@ -125,7 +131,7 @@ type MembersProps ={
 
 
 interface UsersTableProps {
-    renderTeams: any;
+    renderITeams: any;
     search: any;
     setSearch: any;
     page: any;
@@ -135,11 +141,65 @@ interface UsersTableProps {
     pages: any;
 }
 
-const UsersTable: React.FC<UsersTableProps> = ({ renderTeams, totalPages, usersRecords, search, setSearch, page, setPage, pages }) => {
-  
-    const generatePagination = () => {
-        const maxVisiblePages = 5;
+const UsersTable: React.FC<UsersTableProps> = ({ renderITeams, totalPages, usersRecords, search, setSearch, page, setPage, pages }) => {
+   const [showFilterDialog, setShowFilterDialog] = useState<boolean>(false);
+   const [allOganization, setAllOrganizations] = useState<any>([]) 
+   const [allStatus, setAllStatus] = useState([])
+   const [filteredRecords, setFilteredRecords] = useState(renderITeams);
 
+
+   const handleSubmitter = (values:any) => {
+    const filtered = usersRecords.filter((record:any) => {
+      return (
+        (!values.email || record.email.includes(values.email)) &&
+        (!values.organization || record.organization === values.organization) &&
+        (!values.phone || record.phone.includes(values.phone)) &&
+        (!values.date || record.date === values.date) &&
+        (!values.status || record.status === values.status) &&
+        (!values.username || record.username.includes(values.username))
+      );
+    });
+    setFilteredRecords(filtered);
+   };
+
+   useEffect(()=>{
+    setFilteredRecords(renderITeams)
+    const formattedOrganizations = usersRecords.map((item:any) => ({
+      name: item?.company,
+      value: item?.company,
+    }));
+    const formatedStatuses = usersRecords.map((item:any) =>({
+      name: item?.isActive === true ? 'Active' : 'Inactive',
+      value: item?.isActive === true ? 'Active' : 'Inactive',
+    }))    
+    setAllStatus(formatedStatuses)
+    setAllOrganizations(formattedOrganizations)    
+   },[usersRecords])
+   const formik = useFormik({
+    initialValues: {
+      organization:"",
+      username: "",
+      email:"",
+      phone:"",
+      date:"",
+      status:""
+    },
+    onSubmit: handleSubmitter,
+
+    validationSchema: Yup.object({
+      organization: Yup.string().optional(),
+      username: Yup.string().optional(),
+      email: Yup.string().optional(),
+      date: Yup.string().optional(),
+      phone: Yup.string().optional(),
+      status: Yup.string().optional(),
+    }),
+  });
+
+  const { handleSubmit } = formik;
+   
+   const generatePagination = () => {
+        const maxVisiblePages = 5;
         if (totalPages <= maxVisiblePages) {
             return Array.from({ length: totalPages }, (_, i) => i + 1);
         } else {
@@ -158,6 +218,36 @@ const UsersTable: React.FC<UsersTableProps> = ({ renderTeams, totalPages, usersR
     const handlePageChange = (pageNumber:any) => {
         setPage(pageNumber);
     };
+    const toggleFilterDialog = () => {
+      setShowFilterDialog(prevState => !prevState);
+    };
+  
+
+    const ShowFilter = () => {
+      return (
+        <div className={styles.filter}>
+          <div className={styles.filterContent}>
+            <FormikProvider value={formik}>
+               <Form onSubmit={handleSubmit}>
+               <div className={styles.formContainer}>
+                <LenSqrFormField className={styles.filterField} options={allOganization} componentName="select" label="Organization" name="organization"/>
+                <LenSqrFormField className={styles.filterField}  componentName="input-text" label="Username" name="username"/>
+                <LenSqrFormField className={styles.filterField}  componentName="input-text" type="email" label="Email" name="email"/>
+                <LenSqrFormField className={styles.filterField}  componentName="date" type="date" label="Date" name="date"/>
+                <LenSqrFormField className={styles.filterField}  componentName="input-text" label="Phone Number" name="phone"/>
+                <LenSqrFormField className={styles.filterField}  options={allStatus} componentName="select" label="Status" name="status"/>
+                  <div className={styles.filterBtn}>
+                    <CustomButton onClick={()=>{formik.resetForm(),setFilteredRecords(renderITeams)}} text="Reset" className={styles.filterButton} />
+                    <CustomButton text="Filter" />
+                  </div>
+                  </div>
+                </Form>
+             
+            </FormikProvider>
+          </div>
+        </div>
+      );
+    };
   
     return (
     <div className={styles.tableContent}>
@@ -169,46 +259,55 @@ const UsersTable: React.FC<UsersTableProps> = ({ renderTeams, totalPages, usersR
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>organization</span>
-                    <Image src="/filter.svg" alt="" width={16} height={16} />
+                    <Image onClick={toggleFilterDialog} className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
+                      {showFilterDialog && (
+                      <div className={styles.filterContainer}>
+                        <ShowFilter />
+                      </div>
+                      )}
                   </span>
                 </th>
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>Username</span>
-                    <Image src="/filter.svg" alt="" width={16} height={16} />
+                    <Image className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
                   </span>
                 </th>
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>Email</span>
-                     <Image src="/filter.svg" alt="" width={16} height={16} />
+                     <Image className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
+                    
                   </span>
                 </th>
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>Phone number</span>
-                     <Image src="/filter.svg" alt="" width={16} height={16} />
+                     <Image  className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
+                     
                   </span>
                 </th>
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>Date joined</span>
-                     <Image src="/filter.svg" alt="" width={16} height={16} />
+                     <Image  className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
+                    
                   </span>
                 </th>
                 <th className={styles.headerCell}>
                   <span className={styles.headerCellContent}>
                     <span>Status</span>
-                     <Image src="/filter.svg" alt="" width={16} height={16} />
+                     <Image  className={styles.filterIcon} src="/filter.svg" alt="" width={16} height={16} />
+                     
                   </span>
                 </th>
                 <th className={styles.headerCell}></th>
               </tr>
             </thead>
             <tbody>
-            {usersRecords?.length !== 0 &&
-                renderTeams?.map((item: any, i: number) => (
-                <User item={item} key={i} AllUsers={renderTeams} />
+            {filteredRecords?.length !== 0 &&
+                filteredRecords?.map((item: any, i: number) => (
+                <User item={item} key={i} AllUsers={filteredRecords} />
              ))}
             </tbody>
           </Table>

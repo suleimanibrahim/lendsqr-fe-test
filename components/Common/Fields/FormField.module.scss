@@ -19,6 +19,50 @@
   line-height: 19.12px;
   transition: border-color 0.1s;
 }
+.filterField {
+  position: relative;
+  width: 100%;
+}
+.dateInput{
+  padding: 12px 16px !important;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: 2px solid #545F7D26;
+  color: #545F7D;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.dateInput input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  border-radius: 5px;
+  padding: 0.75rem; 
+  padding-right: 2.5rem; 
+  border-radius: 4px;
+  width: 100%;
+}
+
+.dateInput input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 1rem; 
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.dateInput::after {
+  content: url('/path/to/your/icon.svg'); /* Use your custom icon */
+  position: absolute;
+  right: 1rem; /* Same as input padding-right */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
 .passwordFieldWrapper {
   position: relative;
 }
@@ -99,6 +143,7 @@
 .labelErrorStyle {
   color: var(--penaid-red-r-300, #eb5757);
 }
+
 
 .passwordInputStyle:focus-visible {
   outline: none;

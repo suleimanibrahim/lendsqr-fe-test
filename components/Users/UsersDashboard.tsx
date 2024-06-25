@@ -21,7 +21,7 @@ export const UserDashboard = ()=>{
     }, []);
 
     const totalPages = Math?.ceil(totalResults / 10);
-    const renderTeams = usersRecords?.slice((page - 1) * 10, page * 10);
+    const renderITeams = usersRecords?.slice((page - 1) * 10, page * 10);
 
     const cardData = [
         {
@@ -62,7 +62,7 @@ export const UserDashboard = ()=>{
       page={page} 
       pages={pages} 
       usersRecords={usersRecords}
-      renderTeams={renderTeams} 
+      renderITeams={renderITeams} 
       search={search} 
       setSearch={setSearch}
       setPage={setPage}
